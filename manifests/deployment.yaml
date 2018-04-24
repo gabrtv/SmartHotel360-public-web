@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: publicweb
+spec:
+  template:
+    metadata:
+      labels:
+        app: smarthotels
+        component: publicweb
+    spec:
+      containers:
+      - name: publicweb
+        image: gabrtvbuild.azurecr.io/smarthotels/publicweb:master
+        imagePullPolicy: Always
+        env:
+        - name: ApplicationInsights__InstrumentationKey
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: ApplicationInsights__InstrumentationKey  
+        - name: k8sname
+          value: smarthotel360             
+        ports:
+        - containerPort: 80

@@ -1,0 +1,8 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: sh360
+spec:
+  backend:
+    serviceName: publicweb
+    servicePort: 80
