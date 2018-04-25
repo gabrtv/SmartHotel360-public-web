@@ -2,7 +2,14 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: sh360
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
 spec:
-  backend:
-    serviceName: publicweb
-    servicePort: 80
+  rules:
+    - host: sh360.15f8387b-5777-40db-9c77-538e2914902b.canadaeast.aksapp.io
+      http:
+        paths:
+        - backend:
+            serviceName: publicweb
+            servicePort: 80
+          path: /
